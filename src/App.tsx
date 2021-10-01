@@ -7,7 +7,6 @@ import { FileIcons } from "@react95/icons";
 import { RandomPunk } from "./components/Punk/QueriedPunk";
 import { Explore } from "./pages/Explore/Explore";
 import { FAQ } from "./pages/FAQ/FAQ";
-import { Mine } from "./pages/Mine/Mine";
 import { ConnectionController } from "./components/ConnectionController/ConnectionController";
 import { useLocation } from "react-router-dom";
 import { MINABLEPUNKS_ADDR } from "./util";
@@ -80,9 +79,6 @@ function App() {
           <Tabs defaultActiveTab={activeTab}>
             <Tab title="explore">
               <Explore />
-            </Tab>
-            <Tab title="mine">
-              <Mine />
             </Tab>
             <Tab title="faq">
               <FAQ />
