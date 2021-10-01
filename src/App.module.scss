@@ -1,0 +1,84 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.frame {
+  margin-bottom: 0.5rem;
+}
+
+.connectionDetails {
+  margin-bottom: 0.5rem;
+}
+
+.innerFrame {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.innerFrame > p {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.punksContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  height: 80%;
+  width: 80%;
+  flex-direction: column;
+  padding: 2px 2px 8px;
+  background-color: rgb(195, 199, 203);
+  box-shadow: inset 1px 1px 0px 1px rgb(255, 255, 255),
+    inset 0 0 0 1px rgb(134, 138, 142), 1px 1px 0 1px rgb(0, 0, 0);
+}
+
+.titleBar {
+  line-height: 1 !important;
+}
+
+.tabsContainer {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 2rem 2rem 2rem;
+
+  @media screen and (max-width: 1000px) {
+    margin: 0rem 1rem 1rem 1rem;
+  }
+}
+
+.tabsContainer > div {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.header {
+  font-size: 5rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .main {
+    width: 100%;
+    height: 95%;
+  }
+
+  .header {
+    font-size: 4rem;
+  }
+}

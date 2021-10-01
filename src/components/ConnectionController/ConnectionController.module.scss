@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.buttons {
+  flex-direction: row;
+}
+
+.button {
+  width: 8rem;
+  margin-bottom: 0.5rem;
+}

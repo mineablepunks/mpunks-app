@@ -1,0 +1,19 @@
+.idRenderContainer {
+  height: 77px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.imageContainer {
+  width: 77px;
+  height: 77px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.openSeaAnchor {
+  display: flex;
+}
