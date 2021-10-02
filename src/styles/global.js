@@ -164,6 +164,7 @@ const StyleBase = createGlobalStyle`
 
   button {
     font-size: 100% !important;
+    cursor: pointer;
   }
 `;
 
