@@ -16,4 +16,11 @@
 
 .openSeaAnchor {
   display: flex;
+  cursor: pointer;
+}
+
+a {
+  * {
+    cursor: pointer !important;
+  }
 }
