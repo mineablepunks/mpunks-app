@@ -1,3 +1,37 @@
-.inner {
+.container {
+  display: flex;
+  flex-direction: column;
   width: 75%;
+  height: 100%;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+.calculator {
+  flex: 1;
+}
+
+.marginBottom {
+  margin-bottom: 10px;
+}
+
+.inputs {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.input {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.output {
+  margin-bottom: 10px;
 }
