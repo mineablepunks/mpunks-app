@@ -42,33 +42,15 @@ function secondsToHms(d: number) {
   );
 }
 
-function formatPercentage(p: number) {
-  if (Number.isNaN(p) || p < 0 || p > 1) {
-    return "invalid percentage";
-  }
-
-  return (p * 100).toString() + "%";
-}
-
 export const Mine = () => {
   HackilyRewriteHistory({ title: "mine" });
   const [individualMiningRate, setIndividualMiningRate] = useState<number>(
     INDIVIDUAL_MINING_RATE
   );
-  const [networkMiningRate, setNetworkMiningRate] = useState<number>(
-    100 * INDIVIDUAL_MINING_RATE
-  );
+
   const displayedIndividualMiningRate = Number.isNaN(individualMiningRate)
     ? ""
     : individualMiningRate;
-  const displayedNetworkMiningRate = Number.isNaN(networkMiningRate)
-    ? ""
-    : networkMiningRate;
-
-  const winPercentage =
-    networkMiningRate <= 0 || individualMiningRate > networkMiningRate
-      ? 1
-      : individualMiningRate / networkMiningRate;
 
   const onIndividualMiningRateChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -77,20 +59,9 @@ export const Mine = () => {
     [setIndividualMiningRate]
   );
 
-  const onNetworkMiningRateChange = useCallback(
-    (e: React.FormEvent<HTMLInputElement>) => {
-      setNetworkMiningRate(parseNumber(e));
-    },
-    [setNetworkMiningRate]
-  );
-
   const individualTimeToMint = React.useMemo(() => {
     return getTimeToMint(individualMiningRate);
   }, [individualMiningRate]);
-
-  const networkTimeToMint = React.useMemo(() => {
-    return getTimeToMint(networkMiningRate);
-  }, [networkMiningRate]);
 
   return (
     <div className={styles.container}>
@@ -113,21 +84,11 @@ export const Mine = () => {
         </p>
         <Divider className={styles.marginBottom} />
         <div className={styles.inputs}>
-          <Fieldset className={styles.input} legend={"your mining rate (MH/s)"}>
+          <Fieldset className={styles.input} legend={"mining rate (MH/s)"}>
             <Input
               type={"number"}
               value={displayedIndividualMiningRate}
               onChange={onIndividualMiningRateChange}
-            />
-          </Fieldset>
-          <Fieldset
-            className={styles.input}
-            legend={"network mining rate (MH/s)"}
-          >
-            <Input
-              type={"number"}
-              value={displayedNetworkMiningRate}
-              onChange={onNetworkMiningRateChange}
             />
           </Fieldset>
         </div>
@@ -139,18 +100,8 @@ export const Mine = () => {
           />
           <Output
             className={styles.output}
-            label={"time for you to mint (ddd:hh:mm:ss)"}
+            label={"average time to mint (ddd:hh:mm:ss)"}
             value={secondsToDhms(individualTimeToMint)}
-          />
-          <Output
-            className={styles.output}
-            label={"time for network to mint (ddd:hh:mm:ss)"}
-            value={secondsToDhms(networkTimeToMint)}
-          />
-          <Output
-            className={styles.output}
-            label={"chances of you winning"}
-            value={formatPercentage(winPercentage)}
           />
         </div>
       </div>
