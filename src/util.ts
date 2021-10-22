@@ -157,7 +157,7 @@ export const getRecentlyMinedPunks = async function (
   const contract = Mineablepunks__factory.connect(MINABLEPUNKS_ADDR, lib);
   const mints = await contract.queryFilter(
     contract.filters.Transfer("0x0000000000000000000000000000000000000000"),
-    13422973
+    13467383
   );
 
   return mints.reverse().map((r) => r.args.tokenId.toNumber());
