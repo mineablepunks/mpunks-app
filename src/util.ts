@@ -155,9 +155,10 @@ export const getRecentlyMinedPunks = async function (
   lib: Web3Provider
 ): Promise<Array<number>> {
   const contract = Mineablepunks__factory.connect(MINABLEPUNKS_ADDR, lib);
+  const blockNumber = await lib.getBlockNumber();
   const mints = await contract.queryFilter(
     contract.filters.Transfer("0x0000000000000000000000000000000000000000"),
-    13467383
+    blockNumber - 6646
   );
 
   return mints.reverse().map((r) => r.args.tokenId.toNumber());

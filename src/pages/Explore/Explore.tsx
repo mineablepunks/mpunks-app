@@ -86,7 +86,7 @@ export const Explore = () => {
         <br />
         <p>click a punk to go to its opensea page.</p>
       </Frame>
-      <p>last mined:</p>
+      <p>mined in past day:</p>
       <RecentlyMinedPunks />
       <Divider />
       <p>search by id:</p>
