@@ -40,6 +40,8 @@ const PunksByAddressExplorer = () => {
   useEffect(() => {
     if (account) {
       setInputVal(account);
+    } else {
+      setInputVal("0xD0bA4295Acf286a173cbaB2A1312c2B83FCa0723")
     }
   }, [account, library]);
 
