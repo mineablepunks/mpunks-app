@@ -53,10 +53,10 @@ function App() {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://twitter.com/mineable_punks"
+                href="https://twitter.com/mineable_nft"
               >
                 twitter
-              </a>
+              </a>{" "}
               |{" "}
               <a
                 target="_blank"
@@ -64,6 +64,14 @@ function App() {
                 href="https://discord.gg/EVquaxg9WA"
               >
                 discord
+              </a>{" "}
+              |{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/mineablepunks"
+              >
+                git
               </a>
             </p>
             <div className={styles.punksContainer}>
