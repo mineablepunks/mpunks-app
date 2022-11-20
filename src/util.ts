@@ -4,6 +4,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import { Otherpunks__factory } from "./contracts/otherpunks";
 import { PublicCryptopunksData__factory } from "./contracts/public-cryptopunks-data";
 import { Mineablepunks__factory } from "./contracts/mineablepunks";
+import { assetsToPunkId } from "./assets";
 
 // Mainnet
 export const OTHERPUNKS_ADDR = "0x1a9b1bb73ed02db2dc3cd0d25adb42ad4d06389f";
@@ -80,6 +81,23 @@ export const getBlockNumberAssets = async function (
   const assets = await assetInfoFromSeed(lib, seed);
   return assets.assets;
 };
+
+export const getPunkAssetNames = async function(lib: Web3Provider, punkId: number) {
+  const mpunks = Mineablepunks__factory.connect(MINABLEPUNKS_ADDR, lib);
+  const publicCryptopunksData = PublicCryptopunksData__factory.connect(
+    PUBLIC_CRYPTOPUNKS_ADDR,
+    lib
+  );
+
+  const assets = await mpunks.punkIdToAssets(punkId)
+  const assetNames = await publicCryptopunksData.getPackedAssetNames(assets);
+  return assetNames;
+}
+
+export const isOriginalPunk = async function(lib: Web3Provider, punkId: number) {
+  const assetNames = await getPunkAssetNames(lib, punkId)
+  return assetNames in assetsToPunkId
+}
 
 export const attemptMint = async function (
   lib: Web3Provider,

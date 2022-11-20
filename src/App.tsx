@@ -86,13 +86,13 @@ function App() {
         </div>
         <div className={styles.tabsContainer}>
           <Tabs defaultActiveTab={activeTab}>
-            <Tab title="explore">
+            <Tab title="explore" className={styles.tab}>
               <Explore />
             </Tab>
-            <Tab title="mine">
+            <Tab title="mine" className={styles.tab}>
               <Mine />
             </Tab>
-            <Tab title="faq">
+            <Tab title="faq" className={styles.tab}>
               <FAQ />
             </Tab>
           </Tabs>

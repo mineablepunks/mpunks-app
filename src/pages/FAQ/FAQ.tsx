@@ -1,5 +1,5 @@
 import { HackilyRewriteHistory } from "../../hooks";
-import styles from "./FAQ.module.css";
+import styles from "./FAQ.module.scss";
 
 export const FAQ = () => {
   HackilyRewriteHistory({ title: "faq" });
