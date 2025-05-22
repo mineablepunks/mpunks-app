@@ -23,7 +23,7 @@ enum QueryState {
 const OPENSEA_URL = "https://opensea.io";
 
 const constructOpenSeaPath = (punkId: number) =>
-  `${OPENSEA_URL}/assets/${MINABLEPUNKS_ADDR}/${punkId}`;
+  `${OPENSEA_URL}/item/ethereum/${MINABLEPUNKS_ADDR}/${punkId}`;
 
 const OpenSeaWrapper = ({
   punkId,
