@@ -1,3 +1,4 @@
+import { vi, type Mock } from "vitest";
 import React from "react";
 import { act, render } from "@testing-library/react";
 import { Simulate } from "react-dom/test-utils";
@@ -5,24 +6,24 @@ import { useWeb3React } from "@web3-react/core";
 import { getPunkIdsByAddress, getRecentlyMinedPunks } from "../../util";
 import { Explore } from "./Explore";
 
-jest.mock("@web3-react/core", () => ({ useWeb3React: jest.fn() }));
-jest.mock("../../util", () => ({
-  getPunkIdsByAddress: jest.fn(),
-  getRecentlyMinedPunks: jest.fn(),
+vi.mock("@web3-react/core", () => ({ useWeb3React: vi.fn() }));
+vi.mock("../../util", () => ({
+  getPunkIdsByAddress: vi.fn(),
+  getRecentlyMinedPunks: vi.fn(),
 }));
-jest.mock("../../hooks", () => ({ HackilyRewriteHistory: jest.fn() }));
-jest.mock("@react95/core", () => ({
+vi.mock("../../hooks", () => ({ HackilyRewriteHistory: vi.fn() }));
+vi.mock("@react95/core", () => ({
   Input: (props: any) => <input {...props} />,
   Frame: ({ children }: any) => <div>{children}</div>,
 }));
-jest.mock("../../components/Punk/QueriedPunk", () => ({
+vi.mock("../../components/Punk/QueriedPunk", () => ({
   PunkIdRenderer: () => <div>Search by punk ID</div>,
   IdentifiedPunk: ({ punkId }: { punkId: number }) => <div>Punk {punkId}</div>,
 }));
 
-const mockWeb3 = useWeb3React as jest.Mock;
-const mockWallet = getPunkIdsByAddress as jest.Mock;
-const mockRecent = getRecentlyMinedPunks as jest.Mock;
+const mockWeb3 = useWeb3React as Mock;
+const mockWallet = getPunkIdsByAddress as Mock;
+const mockRecent = getRecentlyMinedPunks as Mock;
 
 async function renderExplore() {
   let view!: ReturnType<typeof render>;

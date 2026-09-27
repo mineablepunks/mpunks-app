@@ -10,7 +10,7 @@ export const injectedConnector = new InjectedConnector({
 });
 
 const mainnetUrl =
-  process.env.REACT_APP_MAINNET_URL?.trim() || "https://ethereum.publicnode.com";
+  import.meta.env.REACT_APP_MAINNET_URL?.trim() || "https://ethereum.publicnode.com";
 
 export const networkConnector = new NetworkConnector({
   urls: {

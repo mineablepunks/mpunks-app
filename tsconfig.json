@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["webworker", "dom", "dom.iterable", "esnext"],
+    "target": "ES2022",
+    "lib": [
+      "webworker",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -10,11 +15,18 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": [
+      "vite/client",
+      "vitest/globals"
+    ],
+    "useUnknownInCatchVariables": false
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }
