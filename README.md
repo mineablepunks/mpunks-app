@@ -1,5 +1,24 @@
 # mpunks app
 
+## Ethereum RPC configuration
+
+Read-only browsing defaults to the free, keyless PublicNode endpoint at
+`https://ethereum.publicnode.com`. Set `REACT_APP_MAINNET_URL` to override it.
+An empty value uses the default. Connected wallets continue to use their own provider.
+
+When deploying, remove the old Alchemy URL from the hosting environment (or set
+`REACT_APP_MAINNET_URL=https://ethereum.publicnode.com`) and rebuild the app.
+Create React App embeds this value at build time; changing the environment alone
+does not update an existing bundle. The legacy `eth-mainnet.alchemyapi.io` hostname
+no longer resolves.
+
+PublicNode supports punk rendering and recent mint queries without a key. Wallet
+lookup currently scans historical Transfer events, which the public endpoint
+rejects without a personal token. The UI reports lookup failures instead of
+presenting them as an empty wallet. Restoring historical wallet lookup requires a
+provider with sufficient history access and a separate change to the full-chain
+event query. Public RPC endpoints may apply rate limits.
+
 To generate typescript smart contract bindings:
 `npx typechain --target ethers-v5 --out-dir ~/Downloads/abi-types ~/Downloads/abi-types/*.abi`
 

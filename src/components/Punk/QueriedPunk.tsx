@@ -71,14 +71,14 @@ const _QueriedPunk = ({
 
   useEffect(() => {
     setQueryState(QueryState.WAITING);
-    if (active) {
+    if (active && library) {
       let query: Promise<string>;
       if (punkId) {
-        query = renderId(library!, punkId);
+        query = renderId(library, punkId);
       } else if (seed) {
-        query = renderSeed(library!, seed!);
+        query = renderSeed(library, seed);
       } else {
-        query = renderBlockNumberPreview(library!, blockNumber!);
+        query = renderBlockNumberPreview(library, blockNumber!);
       }
 
       query.then(
