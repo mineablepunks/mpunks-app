@@ -1,51 +1,48 @@
 # mpunks app
 
-To generate typescript smart contract bindings:
-`npx typechain --target ethers-v5 --out-dir ~/Downloads/abi-types ~/Downloads/abi-types/*.abi`
+## Ethereum RPC configuration
 
-# Create React App Boilerplate:
+Read-only browsing defaults to the free, keyless PublicNode endpoint at
+`https://ethereum.publicnode.com`. Set `REACT_APP_MAINNET_URL` to override it.
+An empty value uses the default. Connected wallets continue to use their own provider.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+When deploying, remove the old Alchemy URL from the hosting environment (or set
+`REACT_APP_MAINNET_URL=https://ethereum.publicnode.com`) and rebuild the app.
+Vite embeds this value at build time; changing the environment alone
+does not update an existing bundle. The legacy `eth-mainnet.alchemyapi.io` hostname
+no longer resolves.
 
-## Available Scripts
+PublicNode supports punk rendering and recent mint queries without a key. Wallet
+lookup currently scans historical Transfer events, which the public endpoint
+rejects without a personal token. The UI reports lookup failures instead of
+presenting them as an empty wallet. Restoring historical wallet lookup requires a
+provider with sufficient history access and a separate change to the full-chain
+event query. Public RPC endpoints may apply rate limits.
 
-In the project directory, you can run:
+## Development and deployment
 
-### `yarn start`
+Use Node.js 24 (`nvm install && nvm use`) and npm:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+npm ci
+npm start
+npm test
+npm run build
+npm run preview
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+`npm run build` checks TypeScript and produces the static site in `build/`.
+Vite handles development and production builds, Dart Sass compiles styles, and
+Vitest runs the tests. No native Node Sass bindings or legacy OpenSSL flags are
+required. The UI and wallet libraries retain their compatible major versions.
+The checked-in `.npmrc` preserves the existing React 17 / React95 v5 pairing
+with `legacy-peer-deps`; React95 v5 declares an older React peer range.
 
-### `yarn test`
+Vercel reads Node `24.x` from `package.json`. `vercel.json` selects Vite, runs
+`npm ci` and `npm run build`, serves `build/`, and supports direct navigation to
+`/explore`, `/mine`, and `/faq`. If the dashboard still reports Node 14, select
+**Settings → Build and Deployment → Node.js Version → 24.x** and redeploy the
+updated branch. RPC environment changes also require rebuilding.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`REACT_APP_MAINNET_URL` remains supported with the same name. It is a public,
+build-time browser setting; do not put private credentials in client variables.

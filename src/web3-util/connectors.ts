@@ -9,14 +9,12 @@ export const injectedConnector = new InjectedConnector({
   ],
 });
 
-let mainnetUrl = process.env.REACT_APP_MAINNET_URL;
-if (!mainnetUrl) {
-  mainnetUrl = "https://cloudflare-eth.com";
-}
+const mainnetUrl =
+  import.meta.env.REACT_APP_MAINNET_URL?.trim() || "https://ethereum.publicnode.com";
 
 export const networkConnector = new NetworkConnector({
   urls: {
-    1: mainnetUrl!,
+    1: mainnetUrl,
   },
   defaultChainId: 1,
 });
